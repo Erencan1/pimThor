@@ -1,3 +1,5 @@
+![alt text](https://github.com/Erencan1/pimThor/blob/master/static/images/pt_3.0.png)
+
 # pimThor
 PiMThor is a Big Data Analysis tool that is used to identify High UL RSSI and Passive Intermodulation Problems with Severity of Cell Towers with high accuracy, efficiency, speed and prediction.
 
