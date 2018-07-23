@@ -1,0 +1,37 @@
+{% load static %}
+<link href="{% static 'css/table.css' %}" rel="stylesheet">
+<style>
+    td:first-child {
+        color: #ffe577;
+    }
+</style>
+<table id="onlytable">
+    <thead>
+    <tr>
+        <th>Node</th>
+        <th>Cell</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for node, cells in nodeData.items %}
+        {% for cell, cellv in cells.items %}
+            <tr value="{{ cellv }}">
+                <td>{{ node }}</td>
+                <td>{{ cell }}</td>
+            </tr>
+        {% endfor %}
+    {% endfor %}
+    </tbody>
+</table>
+<script src="{% static 'js/myjs/table/table.js' %}"></script>
+<script src="{% static 'loadtest/load_tests.js' %}"></script>
+<script>
+
+    stage({
+        'table_id': 'onlytable',
+        'row_counter': 6,
+        'nofTotalRows': 100,
+        'sortingFunction': null
+    });
+    stageTR('onlytable', '{{ csrf_token }}', '/loadTest/loadtest/cell/');
+</script>

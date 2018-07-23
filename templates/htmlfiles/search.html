@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>PiMThor</title>
+
+    <!-- Bootstrap Core CSS -->
+     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'images/pt.png' %}">
+    <link href="{% static 'css/sectioncss.css' %}" rel="stylesheet">
+    <style>
+        .sel {
+            height: 40px;
+            width: 220px;
+            background-color: transparent;
+            cursor: pointer;
+        }
+        input::placeholder {
+            color: #f5b23c;
+        }
+    </style>
+</head>
+
+<body style="background-color: #337ab7;">
+{% include 'htmlfiles/sectionbar.html' %}
+
+<section id="services" class="services bg-primary">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-10 col-lg-offset-1">
+
+                <hr class="small">
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-6">
+                        <div class="service-item">
+                            <form method="post">{% csrf_token %}
+                                <label>
+                                    <input name="search" type="search" class="sel" placeholder="  search cell"/>
+                                </label>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<p style="bottom: 0; margin-left: 75%; position: fixed">PiMThor™ - Confidential & Proprietary</p>
+<script>
+    var msg = '{{ msg }}';
+    if (msg)
+    {
+        alert(msg);
+    }
+</script>
+</body>
+</html>

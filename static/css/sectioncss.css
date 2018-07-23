@@ -1,0 +1,24 @@
+a {
+    color: white;
+}
+.rli {
+    float: right;
+    margin-right: 3%;
+    margin-top: 3%;
+}
+.rli a {
+    text-align: center;
+    text-decoration: none;
+}
+.rli a:hover {
+    color: #f44336;
+}
+.numberCircle {
+    border-radius: 50%;
+    background-color: red;
+    border: 2px solid white;
+    color: white;
+    text-align: center;
+    font: 15px Arial;
+    padding: 4px;
+}

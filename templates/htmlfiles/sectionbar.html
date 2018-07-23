@@ -1,0 +1,117 @@
+{% load staticfiles %}
+<div style="position: relative;">
+    <p class="rli"><a >Log out <br> {{ request.user }}</a></p>
+</div>
+<div>
+    <p class="rli">
+        <a class="btn btn-light" >
+            <span class="fa-stack fa-1x">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-signal fa-stack-1x text-primary"></i>
+            </span>
+            Load Test
+        </a>
+    </p>
+</div>
+<style>
+    .cmenu {
+        background-color: #db4661;
+        border-bottom-left-radius: 30%;
+        border-bottom-right-radius: 30%;
+    }
+</style>
+<section id="services" class="services bg-primary">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-10 col-lg-offset-1">
+                <a><img src="{% static 'images/pt_3.0.png' %}"></a>
+                <hr class="small">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="service-item">
+                            <a class="btn btn-light" >
+                                <span class="fa-stack fa-4x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-terminal fa-stack-1x text-primary"></i>
+                                </span>
+                                <h4 {% if page == 'newtest' %}
+                                    class="cmenu"
+                                    {% endif %}>
+                                    <strong>New Test</strong>
+                                </h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="service-item">
+                            <a class="btn btn-light" >
+                                <span class="fa-stack fa-4x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-line-chart fa-stack-1x text-primary"></i>
+                                </span>
+                                <h4 {% if page == 'cfunction' %}
+                                    class="cmenu"
+                                    {% endif %}>
+                                    <strong>CFunction</strong>
+                                </h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="service-item">
+                            <a class="btn btn-light" >
+                                <span class="fa-stack fa-4x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-envelope fa-stack-1x text-primary"></i>
+                                </span>
+                                <h4 {% if page == 'mytests' %}
+                                    class="cmenu"
+                                    {% endif %}>
+                                    <strong>My Tests
+                                        {% if n > 0 %}
+                                            <span class="numberCircle">{{ n }}</span>
+                                        {% endif %}
+                                    </strong>
+                                </h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="service-item">
+                            <a class="btn btn-light" >
+                                <span class="fa-stack fa-4x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-newspaper-o fa-stack-1x text-primary"></i>
+                                </span>
+                                <h4 {% if page == 'tests' %}
+                                    class="cmenu"
+                                    {% endif %}>
+                                    <strong>Tests</strong>
+                                </h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="service-item">
+                            <a class="btn btn-light" >
+                                <span class="fa-stack fa-4x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-search fa-stack-1x text-primary"></i>
+                                </span>
+                                <h4 {% if page == 'search' %}
+                                    class="cmenu"
+                                    {% endif %}>
+                                    <strong>Search</strong>
+                                </h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                    <!-- /.row (nested) -->
+            </div>
+                <!-- /.col-lg-10 -->
+        </div>
+            <!-- /.row -->
+    </div>
+        <!-- /.container -->
+</section>

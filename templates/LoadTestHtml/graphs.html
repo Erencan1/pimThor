@@ -1,0 +1,28 @@
+{% load static %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript" src="{% static 'loadtest/graphs.js' %}"></script>
+
+{% for cell in cells %}
+    <hr>
+    <h3>{{ cell.name }}</h3>
+    <hr/>
+    <div id="g1{{ cell.id }}"></div>
+    <div id="hmap{{ cell.id }}"></div>
+    <div id="g2{{ cell.id }}"></div>
+    <script>
+        var g1 = new Graph('g1{{ cell.id }}');
+        g1.add({{ cell.data.Ys|safe }}, 'PUSCH');
+        g1.add({{ cell.data.Yc|safe }}, 'PUCCH');
+        g1.add({{ cell.data.D|safe }}, 'DL', 'y2');
+        g1.display();
+
+        var g2 = new Graph('g2{{ cell.id }}');
+        g2.add({{ cell.data.RF1|safe }}, 'RF1');
+        g2.add({{ cell.data.RF2|safe }}, 'RF2');
+        g2.add({{ cell.data.RF3|safe }}, 'RF3');
+        g2.add({{ cell.data.RF4|safe }}, 'RF4');
+        g2.display();
+
+        hmap({{ cell.data.PRB|safe }}, 'hmap{{ cell.id }}');
+    </script>
+{% endfor %}

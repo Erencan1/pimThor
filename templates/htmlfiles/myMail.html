@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>PiMThor</title>
+
+    <!-- Bootstrap Core CSS -->
+     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'images/pt.png' %}">
+    <link href="{% static 'css/sectioncss.css' %}" rel="stylesheet">
+    <style>
+        {#   <link href="{% static 'css/table.css' %}" rel="stylesheet">     #}
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            font: normal 14px Menlo, Consolas, "Andale Mono", "Lucida Console", monospace, sans-serif;
+            width: 100%;
+        }
+        td:first-child {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-left: solid 1px #DDEEEE;
+            color: red;
+            font-family: "American Typewriter";
+        }
+        td:last-child {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-right: solid 1px #DDEEEE;
+        }
+        thead th:first-child, tr:nth-child(even) td:first-child{
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+        thead th:last-child, tr:nth-child(even) td:last-child {
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        thead th {
+            background-color: #DDEFEF;
+            border: solid 1px #DDEEEE;
+            color: #336B6B;
+            padding: 10px;
+            text-align: center;
+            text-shadow: 1px 1px 1px #fff;
+        }
+        tbody td {
+            border-bottom: outset 1px #DDEEEE;
+            color: whitesmoke;
+            padding: 10px;
+            text-align: center;
+        }
+        tbody tr:hover {
+            background-color: #f5b23c;
+            cursor: pointer;
+        }
+        thead tr:hover{
+            cursor: s-resize;
+        }
+        input {
+            color: #337ab7;
+        }
+        button {
+            background-color: transparent;
+        }
+    </style>
+</head>
+
+<body style="background-color: #337ab7;">
+{% include 'htmlfiles/sectionbar.html' %}
+
+<section id="services" class="services bg-primary">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-10 col-lg-offset-1">
+                <hr class="small">
+
+                <div class="row">
+
+                     <div class="col-lg-0 col-lg-offset-0">
+                        <div class="service-item">
+                            <table id="onlytable">
+
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Company</th>
+                                    <th>Zone</th>
+                                    <th>Name</th>
+                                    <th>by</th>
+                                    <th>Date</th>
+                                    <th>Number of Cell</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for test in tests reversed %}
+                                    <tr value="{{ test.id }}">
+                                        <td>{{ test.id }}</td>
+                                        <td>{{ test.zone.customer.name }}</td>
+                                        <td>{{ test.zone.name }}</td>
+                                        <td>{{ test.info.name }}</td>
+                                        <td>{{ test.run_by }}</td>
+                                        <td>{{ test.run_date }}</td>
+                                        <td>{{ test.info.count }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<p style="bottom: 0; margin-left: 75%; position: fixed">PiMThor™ - Confidential & Proprietary</p>
+<script src="{% static 'js/myjs/table/table.js' %}"></script>
+<script src="{% static 'js/myjs/index/myMail.js' %}"></script>
+<script>
+
+    var sortingFunction = function (row) {
+        return row.cells[0].innerHTML + row.cells[5].innerHTML;
+    };
+
+    stage({
+        'table_id': 'onlytable',
+        'row_counter': 6,
+        'nofTotalRows': 100,
+        'sortingFunction': null
+    });
+    stageTR('onlytable', '{{ csrf_token }}');
+</script>
+</body>
+</html>

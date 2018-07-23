@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <title>PiMThor</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/cellGraphs.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/pt.png' %}">
+    <style>
+        thead tr:hover{
+            cursor: s-resize;
+        }
+    </style>
+</head>
+<body>
+<div>
+<ul class="nul" style="float: left; margin-top: 1%">
+    <li class="nli"><a href="/"><img src="{% static 'images/pt.png' %}" width="40px"></a></li>
+</ul>
+<ul class="nul" style="float: right; margin-top: 1%">
+    <li class="rli"><a href="/"><p>Log out</p><p>{{ request.user }}</p></a></li>
+</ul>
+    <div>
+        <center>
+        <input type="text" placeholder="{{ search_word }}" id="searchCell">
+            <select id="cell_select_box">
+                <option>--cells---</option>
+            </select>
+    </center>
+    </div>
+</div>
+<br>
+<table>
+<tr>
+    <td>zone</td>
+    <td>{{ ptest.zone.customer.name }} / {{ ptest.zone.name }}</td>
+</tr>
+<tr>
+    <td>date</td>
+    <td>{{ ptest.run_date }}</td>
+</tr>
+<tr>
+    <td>owner</td>
+    <td>{{ ptest.run_by }}</td>
+</tr>
+{% for k,v in ptest.info.items %}
+    <tr>
+    <td>{{ k }}</td>
+    <td>{{ v }}</td>
+    </tr>
+{% endfor %}
+</table>
+<div id="container"></div>
+
+<div style="margin-top: 5%; margin-bottom: 5%; margin-left: 20%; width: 50%;">
+    <table id="cellInfo">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Band</th>
+            <th>Score</th>
+            <th>Severity</th>
+            <th>PerSCORE</th>
+            <th>Absurdity</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for cell in cells %}
+        <tr>
+        <td>{{ cell.name }}</td>
+        <td>{{ cell.bType }}</td>
+        <td>{{ cell.info.IdealCellTrend.Score }}</td>
+        <td>{{ cell.info.IdealCellTrend.Severity }}</td>
+        <td>{{ cell.info.IdealCellTrend.PerSCORE }}</td>
+        <td>{{ cell.info.IdealCellTrend.Absurdity }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+
+<script>
+    var test_data = {{ ptest.data.PRBavg|safe }};
+    var csrf_token = '{{ csrf_token }}';
+    var io_inv = '{{ ptest.id }}';
+</script>
+<script src="{% static 'js/myjs/graphs/barChart.js' %}"></script>
+<script src="{% static 'js/myjs/index/test_main_page.js' %}"></script>
+<script src="{% static 'js/myjs/table/table.js' %}"></script>
+<script>
+
+    var sortingFunction = function (row) {
+        return -parseFloat(row.cells[2].innerHTML)
+    };
+
+    stage({
+        'table_id': 'cellInfo',
+        'row_counter': 20,
+        'nofTotalRows': 100,
+        'sortingFunction': sortingFunction
+    });
+</script>
+<p style="bottom: 0; margin-left: 75%; position: fixed">PiMThor™ - Confidential & Proprietary</p>
+</body>
+</html>

@@ -1,0 +1,53 @@
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    font: normal 14px Menlo, Consolas, "Andale Mono", "Lucida Console", monospace, sans-serif;
+    width: 100%;
+}
+td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left: solid 1px #DDEEEE;
+    color: red;
+    font-family: "American Typewriter";
+}
+td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-right: solid 1px #DDEEEE;
+}
+thead th:first-child, tr:nth-child(even) td:first-child{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+thead th:last-child, tr:nth-child(even) td:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+thead th {
+    background-color: #DDEFEF;
+    border: solid 1px #DDEEEE;
+    color: #336B6B;
+    padding: 10px;
+    text-align: center;
+    text-shadow: 1px 1px 1px #fff;
+}
+tbody td {
+    border-bottom: outset 1px #DDEEEE;
+    color: whitesmoke;
+    padding: 10px;
+    text-align: center;
+}
+tbody tr:hover {
+    background-color: #f5b23c;
+    cursor: pointer;
+}
+thead tr:hover{
+    cursor: s-resize;
+}
+input {
+    color: #337ab7;
+}
+button {
+    background-color: transparent;
+}

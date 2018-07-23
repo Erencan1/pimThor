@@ -1,0 +1,36 @@
+{% load static %}
+<link href="{% static 'css/table.css' %}" rel="stylesheet">
+<style>
+    td:first-child {
+        color: #ffe577;
+    }
+</style>
+<table id="onlytable">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>by</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for test in load_tests reversed %}
+        <tr value="{{ test.id }}">
+            <td>{{ test.id }}</td>
+            <td>{{ test.run_by }}</td>
+            <td>{{ test.run_date }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<script src="{% static 'js/myjs/table/table.js' %}"></script>
+<script src="{% static 'loadtest/load_tests.js' %}"></script>
+<script>
+    stage({
+        'table_id': 'onlytable',
+        'row_counter': 6,
+        'nofTotalRows': 100,
+        'sortingFunction': null
+    });
+    stageTR('onlytable', '{{ csrf_token }}', '/loadTest/loadtest/');
+</script>

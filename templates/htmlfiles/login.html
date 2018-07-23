@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>PiMThor</title>
+
+    <!-- Bootstrap Core CSS -->
+     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/stylish-portfolio.css' %}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'images/pt.png' %}">
+<style>
+    .ca{
+        color: #66afe9;
+    }
+</style>
+
+</head>
+
+<body>
+
+<header id="top" class="header">
+    <div class="text-vertical-center">
+        <h1><a href="/">PiMThor</a></h1>
+        <h3>PIM Prediction &amp; Analyzer</h3>
+        <br>
+        <div class="login">
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="username" id="username" placeholder="Username" required="required" /><br><br>
+                <input type="password" name="password" id="password" placeholder="Password" required="required" /><br><br>
+                <button class="btn btn-dark btn-lg" id="sbmt">Log In</button>
+                <p>
+                    <a class="ca" href="#" id="signup">Sign up now</a>
+                    /
+                    <a class="ca" href="#" id="forgot">Forgot account?</a>
+
+                </p>
+            </form>
+        </div>
+    </div>
+</header>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/myjs/index/login.js' %}"></script>
+{% if msg %}
+    <script>alert('wrong username or password');</script>
+{% endif %}
+</body>
+
+</html>

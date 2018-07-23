@@ -1,0 +1,55 @@
+.nul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.nli a {
+    display: block;
+    color: #337ab7;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.nli a:hover {
+    background-color: #111;
+}
+.rli {
+    float: right;
+}
+.rli a {
+    display: block;
+    color: #337ab7;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.rli a:hover {
+    color: red;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #337ab7;
+    color: #dddddd;
+}
+input{
+    width: 200px;
+    height: 30px;
+    border: solid 3px #337ab7;
+    font-size: 2ch;
+}
+select {
+    height: 38px;
+    border: solid 3px #337ab7;
+    font-size: 2ch;
+}

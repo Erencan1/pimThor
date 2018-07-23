@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+{% load pytags %}
+<head>
+    <meta charset="UTF-8">
+    <title>PiMThor</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/cellGraphs.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/pt.png' %}">
+</head>
+<body>
+<div>
+<ul class="nul" style="float: left; margin-top: 1%">
+    <li class="nli"><a href=""><img src="{% static 'images/pt.png' %}" width="40px"></a></li>
+</ul>
+<ul class="nul" style="float: right; margin-top: 1%">
+    <li class="rli"><a href=""><p>Log out</p><p>{{ request.user }}</p></a></li>
+</ul>
+</div>
+<br>
+
+{% for cell in cells %}
+<div style="margin-top: 5%;">
+    <table style="width: 100%;">
+        <tr>
+            <th>Company</th>
+            <th>Zone</th>
+            <th>Cell</th>
+            <td>id</td>
+        </tr>
+        <tr>
+            <td>{{ cell.ptest.zone.customer.name }}</td>
+            <td>{{ cell.ptest.zone.name }}</td>
+            <td>{{ cell.name }} </td>
+            <td>{{ cell.id }}</td>
+        </tr>
+    </table>
+</div>
+<div style="margin-top: 1%; float: left; width: 300px">
+    {% for k, v in cell.info.items %}
+        <table style="width: 100%">
+        <thead>
+        <tr><th>{{ k }}</th></tr>
+        </thead>
+        <tbody>
+            {% if v|is_dict %}
+                {% for kv in v|dict_path %}
+                    <tr>
+                    <td>{{ kv.0 }}</td>
+                    <td>{{ kv.1 }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr><td>{{ v }}</td></tr>
+            {% endif %}
+        </tbody>
+        </table>
+        <hr>
+    {% endfor %}
+
+</div>
+<div style="overflow: hidden;">
+<div id="line1{{ cell.id }}" style="width: 650px; height: 400px; float: left;"></div>
+<div id="hmap{{ cell.id }}" style="width: 650px; height: 400px; margin-left: 660px;"></div>
+<br>
+<div id="line2{{ cell.id }}" style="width: 650px;; height: 400px; float: left;"></div>
+<div id="line3{{ cell.id }}" style="width: 650px;; height: 400px; margin-left: 660px;"></div>
+</div>
+<!--SCRIPTs-->
+
+<script type="text/javascript" src="{% static 'js/myjs/graphs/hmap.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/myjs/graphs/lineChart.js' %}"></script>
+
+<script>
+
+    var data = {};
+
+    data.prb = {{ prb|safe }};
+    data.t = {{ cell.data.T|safe }};
+    data.prbv = {{ cell.data.PRB|safe }};
+    data.ys = {{ cell.data.Ys|safe }};
+    data.yc = {{ cell.data.Yc|safe }};
+    data.user = {{ cell.data.X_0|safe }};
+    data.ul = {{ cell.data.X_1|safe }};
+    data.dl = {{ cell.data.X_2|safe }};
+    data.ss = {{ cell.data.Ss|safe }};
+    data.sc = {{ cell.data.Sc|safe }};
+    data.q16 = {{ cell.data.Q16|safe }};
+    data.psk = {{ cell.data.PSK|safe }};
+
+    hmap(data, "hmap{{ cell.id }}");
+    line(data, "line1{{ cell.id }}");
+    line2(data, "line2{{ cell.id }}");
+    line3(data, "line3{{ cell.id }}");
+</script>
+
+
+{% endfor %}
+<p style="bottom: 0; margin-left: 75%; position: fixed">PiMThor™ - Confidential & Proprietary</p>
+</body>
+</html>

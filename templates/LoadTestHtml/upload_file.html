@@ -1,0 +1,22 @@
+{% load static %}
+<form method="post" enctype="multipart/form-data" id="theForm">{% csrf_token %}
+    <div class="col-lg-10 col-lg-offset-1">
+        <div class="row">
+            <div class="col-md-12 col-sm-6">
+                <div class="service-item">
+                    <label class="btn btn-light" for="upload-file">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x" style="color: transparent"></i>
+                            <i class="fa fa-upload fa-stack-1x text-primary" style="color: whitesmoke"></i>
+                        </span>
+                    </label>
+
+                    <input type="text" name="upload_files" id="upload_files" style="display: none;">
+                    <input type="file" name="upload-file" id="upload-file" style="display: none;" multiple />
+                    <div id="displayFiles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="{% static 'js/myjs/index/upload_file.js' %}"></script>
