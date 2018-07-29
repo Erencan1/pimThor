@@ -19,3 +19,6 @@ Severity Table
 Cell Report
 
 ![alt text](https://github.com/Erencan1/pimThor/blob/master/README_images/cell_page.png)
+
+
+###### Contact me for more details: erencanyilmaz1@gmail.com
